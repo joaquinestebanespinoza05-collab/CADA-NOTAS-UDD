@@ -1,0 +1,786 @@
+[1.html](https://github.com/user-attachments/files/34725919/1.html)
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso - Universidad del Desarrollo</title>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --udd-blue: #005b96;
+  --udd-btn-blue: #004b85;
+  --udd-btn-hover: #003763;
+  --link: #0b5394;
+  --blue: #0a4a8a;
+  --red: #d63b0c;
+  --orange: #d97006;
+  --green: #2f9a2f;
+  --line: #dfe3e8;
+  --txt: #6b6f75;
+  --bg-login: #e9e9e9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Open Sans", Arial, sans-serif;
+  color: var(--txt);
+  background-color: var(--bg-login);
+}
+
+/* ===================================================
+   1. PANTALLA DE INICIO DE SESIÓN UDD
+   =================================================== */
+#login-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px 16px;
+  background-color: var(--bg-login);
+}
+
+.udd-header {
+  margin-bottom: 24px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.udd-logo-svg {
+  width: 285px;
+  max-width: 90vw;
+  height: auto;
+  display: block;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 390px;
+  background: #ffffff;
+  border-top: 4px solid var(--udd-blue);
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.login-card-body {
+  padding: 32px 34px 28px;
+}
+
+.login-title {
+  text-align: center;
+  color: var(--udd-blue);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0 0 24px;
+}
+
+.input-group {
+  margin-bottom: 16px;
+}
+
+.input-field {
+  width: 100%;
+  height: 42px;
+  padding: 8px 14px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: #333333;
+  background-color: #ffffff;
+  border: 1px solid #d4d7dc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-field::placeholder {
+  color: #b0b5bc;
+  font-weight: 700;
+}
+
+.input-field:focus {
+  border-color: var(--udd-blue);
+  box-shadow: 0 0 0 2px rgba(0, 91, 150, 0.12);
+}
+
+.btn-submit {
+  width: 100%;
+  height: 42px;
+  margin-top: 6px;
+  background-color: var(--udd-btn-blue);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-submit:hover {
+  background-color: var(--udd-btn-hover);
+}
+
+.error-alert {
+  background-color: #fde8e8;
+  color: #9b1c1c;
+  border: 1px solid #f8b4b4;
+  padding: 8px 12px;
+  border-radius: 3px;
+  font-size: 0.82rem;
+  margin-bottom: 14px;
+  text-align: center;
+  display: none;
+}
+
+.info-alert {
+  background-color: #e1effe;
+  color: #1e429f;
+  border: 1px solid #a4cafe;
+  padding: 8px 12px;
+  border-radius: 3px;
+  font-size: 0.82rem;
+  margin-bottom: 14px;
+  text-align: center;
+  display: none;
+}
+
+.login-card-footer {
+  background-color: #f3f3f3;
+  border-top: 1px solid #e5e5e5;
+  padding: 15px 20px;
+  text-align: center;
+}
+
+.forgot-link {
+  color: #333333;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+  color: var(--udd-blue);
+}
+
+/* ===================================================
+   2. PORTAL DE NOTAS PARCIALES (KINESIOLOGÍA)
+   =================================================== */
+#portal-screen {
+  display: none;
+  min-height: 100vh;
+  background-color: #ffffff;
+  color: var(--txt);
+  font: 16px/1.4 "Open Sans", Arial, sans-serif;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 18px 60px;
+}
+
+h1 {
+  font-weight: 400;
+  font-size: 2rem;
+  margin: 0 0 18px;
+  color: #6b6f75;
+}
+
+.course {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  margin-bottom: 4px;
+  background: #ffffff;
+}
+
+.chead {
+  padding: 20px 46px;
+  color: var(--link);
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.course.open .chead {
+  border-bottom: 1px solid var(--line);
+}
+
+.badge {
+  display: inline-block;
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 3px 8px;
+  line-height: 1.3;
+  text-transform: none;
+}
+
+.badge.ok {
+  background: var(--blue);
+}
+
+.badge.bad {
+  background: var(--red);
+}
+
+.cbody {
+  padding: 22px 24px 26px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+}
+
+.row.tog {
+  cursor: pointer;
+}
+
+.tri {
+  display: inline-block;
+  width: 22px;
+  color: #888888;
+  font-size: 0.85rem;
+}
+
+.cat {
+  background: var(--orange);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  border-radius: 8px;
+  padding: 8px 8px;
+  line-height: 1.1;
+}
+
+.name {
+  text-transform: none;
+}
+
+.name.up {
+  text-transform: uppercase;
+}
+
+.g {
+  background: var(--green);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.8rem;
+  border-radius: 7px;
+  padding: 5px 9px;
+  min-width: 52px;
+  text-align: center;
+}
+
+.g.bad {
+  background: var(--red);
+}
+
+.g.edit,
+.badge.edit {
+  cursor: pointer;
+}
+
+.g.edit:hover,
+.badge.edit:hover {
+  outline: 2px solid #9bb8dc;
+}
+
+.empty {
+  padding: 6px 0 6px 6px;
+  font-size: 0.92rem;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 12px;
+  font-family: "Plus Jakarta Sans", "Open Sans", Arial, sans-serif;
+  border-bottom: 1px solid var(--line);
+}
+
+.tabs {
+  display: inline-flex;
+  border: 1px solid #d9dde3;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.tab {
+  padding: 11px 18px;
+  font: 500 1rem "Plus Jakarta Sans", "Open Sans", Arial, sans-serif;
+  color: #6b7280;
+  background: #ffffff;
+  border: 0;
+  cursor: pointer;
+}
+
+.tab + .tab {
+  border-left: 1px solid #d9dde3;
+}
+
+.tab.active {
+  background: #f1f3f6;
+  color: #2d3748;
+}
+
+.logout {
+  color: #6b7280;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.logout:hover {
+  color: #2d3748;
+}
+
+.career {
+  padding: 12px 0 18px;
+}
+
+.career a {
+  display: inline-block;
+  padding: 10px 18px;
+  border: 1px solid var(--orange);
+  border-radius: 8px;
+  color: var(--orange);
+  text-decoration: none;
+  font: 500 1rem "Plus Jakarta Sans", "Open Sans", Arial, sans-serif;
+  background: #ffffff;
+}
+
+.career a:hover {
+  background: #fff6ec;
+}
+
+/* ===================================================
+   3. MODAL PERSONALIZADO PARA EDICIÓN DE NOTAS
+   =================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1000;
+}
+
+.modal-backdrop.show {
+  display: flex;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 340px;
+  background: #ffffff;
+  border-radius: 8px;
+  border-top: 4px solid var(--udd-blue);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+  padding: 20px;
+}
+
+.modal-title {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.modal-desc {
+  margin: 0 0 14px;
+  font-size: 0.84rem;
+  color: #6b7280;
+}
+
+.modal-input {
+  width: 100%;
+  height: 40px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  outline: none;
+}
+
+.modal-input:focus {
+  border-color: var(--udd-blue);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.modal-btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.modal-btn.cancel {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.modal-btn.clear {
+  background: #fff1f2;
+  color: var(--red);
+  margin-right: auto;
+}
+
+.modal-btn.save {
+  background: var(--udd-btn-blue);
+  color: #ffffff;
+}
+
+@media (max-width: 600px) {
+  .chead {
+    padding: 16px 18px;
+  }
+  .cbody {
+    padding: 16px 14px 20px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================================================
+     PANTALLA 1: LOGIN UNIVERSIDAD DEL DESARROLLO
+     =================================================== -->
+<div id="login-screen">
+  <div class="udd-header">
+    <!-- Logotipo vectorial UDD nítido y autocontenido -->
+    <svg class="udd-logo-svg" viewBox="0 0 360 92" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Universidad del Desarrollo">
+      <g fill="#005b96">
+        <!-- Letra U -->
+        <path d="M112 10h12v26c0 7 4.5 11.5 11.5 11.5h7V18h12v40h-19c-13.5 0-23.5-9.5-23.5-22V10z"/>
+        <!-- Primera D -->
+        <path d="M161 10h20c16.5 0 28.5 10.5 28.5 24s-12 24-28.5 24h-20V10zm12 10.5v27h8c10 0 16.5-5.8 16.5-13.5S191 20.5 181 20.5h-8z"/>
+        <!-- Segunda D -->
+        <path d="M204 10h20c16.5 0 28.5 10.5 28.5 24s-12 24-28.5 24h-20V10zm12 10.5v27h8c10 0 16.5-5.8 16.5-13.5S234 20.5 224 20.5h-8z"/>
+      </g>
+      <text x="180" y="82" font-family="'Open Sans', Arial, sans-serif" font-size="20.5" font-weight="600" fill="#232323" text-anchor="middle" letter-spacing="-0.2">
+        Universidad del Desarrollo
+      </text>
+    </svg>
+  </div>
+
+  <div class="login-card">
+    <div class="login-card-body">
+      <div class="login-title">
+        Accede a tu cuenta en<br>Universidad del Desarrollo
+      </div>
+
+      <div id="error-msg" class="error-alert">
+        Usuario o contraseña incorrectos.
+      </div>
+
+      <div id="info-msg" class="info-alert">
+        Contacta a soporte académico UDD para restablecer tu usuario o contraseña.
+      </div>
+
+      <form id="login-form" onsubmit="handleLogin(event)">
+        <div class="input-group">
+          <input type="text" id="username" class="input-field" placeholder="." autocomplete="username" required>
+        </div>
+        <div class="input-group">
+          <input type="password" id="password" class="input-field" placeholder="." autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="btn-submit">Acceder</button>
+      </form>
+    </div>
+
+    <div class="login-card-footer">
+      <a href="#" class="forgot-link" onclick="showForgotMessage(event)">¿Olvidaste tu usuario o contraseña?</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================
+     PANTALLA 2: PORTAL DE NOTAS PARCIALES
+     =================================================== -->
+<div id="portal-screen">
+  <main>
+    <div class="topbar">
+      <div class="tabs">
+        <button class="tab" type="button" onclick="selectTab(this)">Inicio</button>
+        <button class="tab active" type="button" onclick="selectTab(this)">Kinesiología</button>
+      </div>
+      <a class="logout" onclick="handleLogout()">Cerrar sesión</a>
+    </div>
+    <div class="career"><a href="https://udd.instructure.com/" target="_blank" rel="noopener noreferrer">Ver carrera</a></div>
+    <h1>Notas Parciales</h1>
+    <div id="root"></div>
+  </main>
+</div>
+
+<!-- ===================================================
+     MODAL DE EDICIÓN DE CALIFICACIONES
+     =================================================== -->
+<div id="grade-modal" class="modal-backdrop" onclick="closeModalOnBackdrop(event)">
+  <div class="modal-box">
+    <h3 class="modal-title" id="modal-label">Editar nota</h3>
+    <p class="modal-desc">Ingresa la calificación (ej. 5.8 o 6,2).</p>
+    <input type="text" id="modal-input" class="modal-input" inputmode="decimal" placeholder="Ej: 6.0">
+    <div class="modal-actions">
+      <button type="button" class="modal-btn clear" onclick="clearGrade()">Borrar</button>
+      <button type="button" class="modal-btn cancel" onclick="closeModal()">Cancelar</button>
+      <button type="button" class="modal-btn save" onclick="saveGrade()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== CONTROL DE ACCESO ===== */
+function handleLogin(e) {
+  e.preventDefault();
+  const u = document.getElementById('username').value.trim();
+  const p = document.getElementById('password').value.trim();
+  const errDiv = document.getElementById('error-msg');
+  const infoDiv = document.getElementById('info-msg');
+  infoDiv.style.display = 'none';
+
+  if (u === 'j.espinozab' && p === '12345o') {
+    errDiv.style.display = 'none';
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('portal-screen').style.display = 'block';
+    render();
+  } else {
+    errDiv.style.display = 'block';
+  }
+}
+
+function showForgotMessage(e) {
+  e.preventDefault();
+  document.getElementById('error-msg').style.display = 'none';
+  document.getElementById('info-msg').style.display = 'block';
+}
+
+function handleLogout() {
+  document.getElementById('portal-screen').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('password').value = '';
+  document.getElementById('error-msg').style.display = 'none';
+  document.getElementById('info-msg').style.display = 'none';
+}
+
+function selectTab(btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+/* ===== DATOS DEL PROTOTIPO DE NOTAS ===== */
+const COURSES = [
+  {n:"Taller de comunicación oral",groups:[
+    {n:"Asistencia",items:[{n:"ASISTENCIA",w:80,g:100,pct:true}]},
+    {n:"Nota final",items:[
+      {n:"CERTAMEN APERTURABLE",w:40,g:6.8},
+      {n:"talleres",w:60,items:[
+        {n:"TALLERES 1: STORYTELLING",w:33,g:5.2},
+        {n:"TALLERES 3: BITÁCORA",w:34,g:5.0},
+        {n:"TALLERES 2: MESA REDONDA",w:33,g:7.0}]}]}]},
+  {n:"Morfología",groups:[
+    {n:"Nota final",items:[
+      {n:"talleres",w:100,items:[
+        {n:"TAREAS",g:6.3},
+        {n:"CERTAMEN 3",g:5.5},
+        {n:"CERTAMEN 1",g:4.0},
+        {n:"CERTAMEN 2",g:5.0},
+        {n:"CONTROLES",g:5.0},
+        {n:"INFORMES",g:6.0},
+        {n:"TAREAS",g:6.0}]}]}]},
+  {n:"Taller comunicación escrita",groups:[
+    {n:"Nota final",items:[
+      {n:"talleres",w:100,items:[
+        {n:"TALLERES 1",g:6.8},
+        {n:"TALLERES 2",g:6.6},
+        {n:"TALLERES 3",g:7.0},
+        {n:"TALLERES 4",g:5.0}]}]}]},
+  {n:"Biofísica",groups:[
+    {n:"Nota final",items:[
+      {n:"talleres",w:100,items:[
+        {n:"CERTAMEN 1",g:5.4},
+        {n:"CERTAMEN 2",g:3.8},
+        {n:"EXAMEN",g:4.9},
+        {n:"CONTROLES",g:6.2},
+        {n:"LABORATORIO",g:6.3}]}]}]},
+  {n:"Actividad física y deporte",groups:[
+    {n:"Nota final",items:[
+      {n:"talleres",w:100,items:[
+        {n:"TALLERES 1",g:6.8},
+        {n:"TALLERES 2",g:6.8},
+        {n:"TALLERES 3",g:5.6}]}]}]},
+  {n:"Práctica kinésica básica",groups:[
+    {n:"Nota final",items:[
+      {n:"talleres",w:100,items:[
+        {n:"CERTAMEN 1",g:6.8},
+        {n:"CERTAMEN 2",g:6.6},
+        {n:"TAREAS",g:5.0},
+        {n:"PROYECTOS",g:6.1}]}]}]},
+  {n:"Morfología II",groups:[]},
+  {n:"Bases químicas y biológicas",groups:[]},
+  {n:"Lectura crítica",groups:[]},
+  {n:"Biofísica II",groups:[]}
+];
+
+const KEY = 'notas-parciales-v1';
+let ov = {}, open = new Set(), activeEditKey = null;
+try { ov = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(ov)); } catch (e) {} };
+const fmt = n => n.toFixed(1).replace('.', ',');
+
+function leaf(it, k) {
+  return ov[k] !== undefined ? ov[k] : (it.g !== undefined ? it.g : null);
+}
+
+function val(it, k) {
+  return it.items ? avg(it.items, k) : leaf(it, k);
+}
+
+function avg(items, k) {
+  let s = 0, w = 0;
+  items.forEach((it, i) => {
+    const v = val(it, k + '.' + i);
+    if (v != null) {
+      const x = it.w ?? 1;
+      s += v * x;
+      w += x;
+    }
+  });
+  return w ? Math.round(s / w * 10 + 1e-9) / 10 : null;
+}
+
+function final(c, ci) {
+  const gi = c.groups.findIndex(g => g.n.toUpperCase() === 'NOTA FINAL');
+  if (gi >= 0) return avg(c.groups[gi].items, ci + '.' + gi);
+  return ov['f' + ci] !== undefined ? ov['f' + ci] : (c.final !== undefined ? c.final : null);
+}
+
+function items(list, k, depth) {
+  return list.map((it, i) => {
+    const key = k + '.' + i, pad = `style="padding-left:${6 + depth * 28}px"`;
+    const v = val(it, key), bad = v != null && !it.pct && v < 4;
+    const badge = v == null
+      ? `<span class="g edit" data-edit="${key}" data-name="${it.n}">–</span>`
+      : `<span class="g ${bad ? 'bad' : ''} ${it.items ? '' : 'edit'}" ${it.items ? '' : `data-edit="${key}" data-name="${it.n}"`}>${fmt(v)}</span>`;
+    const label = it.w !== undefined ? `${it.n} (${fmt(it.w)}%)`.replace(',0%', '%') : it.n;
+    if (it.items) {
+      const o = open.has(key);
+      return `<div class="row tog" ${pad} data-tog="${key}"><span><span class="tri">${o ? '▼' : '▶'}</span><span class="name">${label}</span></span>${badge}</div>` + (o ? items(it.items, key, depth + 1) : '');
+    }
+    return `<div class="row" ${pad}><span class="name">${label}</span>${badge}</div>`;
+  }).join('');
+}
+
+function render() {
+  document.getElementById('root').innerHTML = COURSES.map((c, ci) => {
+    const o = open.has('c' + ci), f = final(c, ci);
+    const hasDetail = c.groups.length > 0;
+    const badge = f != null
+      ? `<span class="badge ${f < 4 ? 'bad' : 'ok'} ${hasDetail ? '' : 'edit'}" ${hasDetail ? '' : `data-edit="f${ci}" data-name="${c.n}"`}>Nota final: ${fmt(f)}</span>`
+      : (hasDetail ? '' : `<span class="badge ok edit" data-edit="f${ci}" data-name="${c.n}">Nota final: –</span>`);
+    let body = '';
+    if (o) {
+      body = '<div class="cbody">' + (hasDetail ? c.groups.map((g, gi) => {
+        const key = ci + '.' + gi, go = open.has('g' + key);
+        return `<div class="row tog" data-tog="g${key}" style="justify-content:flex-start"><span class="tri">${go ? '▼' : '▶'}</span><span class="cat">${g.n}</span></div>` + (go ? items(g.items, key, 1) : '');
+      }).join('') : '<p class="empty">Aún no hay detalle para este ramo.</p>') + '</div>';
+    }
+    return `<section class="course ${o ? 'open' : ''}"><div class="chead" data-tog="c${ci}">${c.n} ${badge}</div>${body}</section>`;
+  }).join('');
+}
+
+/* ===== CONTROL DEL MODAL DE NOTAS ===== */
+function openModal(key, name) {
+  activeEditKey = key;
+  document.getElementById('modal-label').textContent = name || 'Editar nota';
+  const input = document.getElementById('modal-input');
+  input.value = ov[key] !== undefined ? String(ov[key]).replace('.', ',') : '';
+  document.getElementById('grade-modal').classList.add('show');
+  setTimeout(() => input.focus(), 30);
+}
+
+function closeModal() {
+  activeEditKey = null;
+  document.getElementById('grade-modal').classList.remove('show');
+}
+
+function closeModalOnBackdrop(e) {
+  if (e.target.id === 'grade-modal') closeModal();
+}
+
+function saveGrade() {
+  if (!activeEditKey) return;
+  const raw = document.getElementById('modal-input').value.trim();
+  const n = parseFloat(raw.replace(',', '.'));
+  if (raw === '' || isNaN(n)) {
+    delete ov[activeEditKey];
+  } else {
+    ov[activeEditKey] = n;
+  }
+  save();
+  render();
+  closeModal();
+}
+
+function clearGrade() {
+  if (!activeEditKey) return;
+  delete ov[activeEditKey];
+  save();
+  render();
+  closeModal();
+}
+
+document.getElementById('modal-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') saveGrade();
+  if (e.key === 'Escape') closeModal();
+});
+
+document.getElementById('root').addEventListener('click', e => {
+  const ed = e.target.closest('[data-edit]');
+  if (ed) {
+    e.stopPropagation();
+    openModal(ed.dataset.edit, ed.dataset.name);
+    return;
+  }
+  const t = e.target.closest('[data-tog]');
+  if (t) {
+    const k = t.dataset.tog;
+    open.has(k) ? open.delete(k) : open.add(k);
+    render();
+  }
+});
+</script>
+</body>
+</html>
